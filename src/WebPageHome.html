@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- The name that appears in the top left, in the tab name-->
+    <title>Home Page - Ferrell And Sons: Wagons And Wheels</title>
+    <!-- This is the external css sheet that I used to customize the <h1> tags. I just wanted to make the h1 so noticeable and different to prove that I am able to use all forms of css-->
+    <link rel="stylesheet" href="../font_style.css">
+    <!-- This makes it so the background color of the web page is antique white-->
+
+    <!-- The below example is an example of internal CSS, I mostly use inline as it makes more sense to me.-->
+    <style>
+    body {
+
+        background-color: antiquewhite;
+    }
+    </style>
+</head>
+<body>
+<!-- The below example is one of inline css, this one is the most common I used in this program as I view it the easiest method.-->
+<!-- This affects the whole top part of the project, the program refused to move to where I wanted-->
+<!-- without using display flex. The space-between allows it to be perfectly spaced. There is another way to do it, but this worked for me-->
+<header style="display: flex;  justify-content: space-between;">
+    <!-- the source comes from the local file, that way it doesn't have to be downloaded on the users PC-->
+    <img src="../images/Logo.jpg" width="150" height="100" alt="Logo">
+    <h1 style="text-align: right;">
+        Ferrell and Sons: Wagons and Wheels
+    </h1>
+</header>
+
+<!--The unordered list is what I used for the nav table. -->
+<!-- the list style is to get rid of the bullet points, and inline makes it so the border doesn't keep extending -->
+<nav>
+<ul style = "list-style-type: none; border: 5px solid black; padding: 10px; display: inline-block;">
+    <!-- a href is what I used in past internships to go to another web page, so I am reusing it here. -->
+    <!-- The words in between the quotes are the link, being where it will go after you click it.-->
+    <li style="padding:10px"><a href="Home - Fill In Later">Home</a></li>
+    <li style="padding:10px"><a href="About Us - Fill In Later">About Us</a></li>
+    <li style="padding:10px"><a href="Shopping Cart - Fill In Later">Shopping Cart</a></li>
+    <li style="padding:10px"><a href="Products - Fill In Later">Products</a></li>
+    <li style="padding:10px"><a href="Login - Fill In Later">Login</a></li>
+    <li style="padding:10px"><a href="Contact Us - Fill In Later">Contact Us</a></li>
+</ul>
+</nav>
+
+<!-- This is the center where the customer sees stuff for sale.-->
+<!-- Absolute allows me to move the body around, without it the program gets temperamental -->
+<section style ="position: absolute; top: 131px; left: 200px; width: 800px;border: 5px solid black;display: flex; justify-content: space-between;">
+    <img src="../images/Car_Tire.jpg" width="200" height="175" alt="Car Tire">
+    <img src="../images/Engine.jpg" width="200" height="175" alt="Engine">
+    <img src="../images/Spark_Plugs.jpg" width="200" height="175" alt="Spark Plugs">
+</section>
+<section>
+    <h1 style ="position: absolute; top: 306px; left:350px">
+        We sell anything from fender's to whole engine blocks!</h1>
+    <p style = "position: absolute; top: 340px; left:475px; text-decoration: underline;"> Click the button below to head to our store!</p>
+    <a style = "position: absolute; top: 400px; left:500px;" href="Store - Fill in Later">
+        <h1>Our Product Stockpile!</h1>
+    </a>
+</section>
+
+<!-- As with the body, the ads are supposed to display. However, I just chose to do filler-->
+<aside style="position: absolute; top: 131px; right: 5px; width: 200px;  border: 5px solid black">
+    <img src="../images/Wrap_Ad.jpg" width="200" height="175" alt="Wrap Advertisement">
+    <p style="font-weight: bolder">Today's Sponsors are: Jacob's Car Wrapping And Detailing!</p>
+</aside>
+
+
+<!--This is the bottom, so after specifying bottom we set it to 0 to make sure it is on the flat bottom with no mistake-->
+<!-- Width is there to make sure it fills out the whole bottom, you can use numbers but googling and W3 schools says this is easier-->
+<footer style="position: absolute; bottom: 0; width: 100%; background-color: darkgray ;">
+    <ul style = "list-style-type: none">
+        <li style = "float: left; padding:40px"><a href="Terms of Use - Fill In Later">Terms of Use</a></li>
+        <li style = "float: left; padding:40px"><a href="Cookie and Private Policy - Fill In Later">Cookie and Private Policy</a></li>
+        <li style = "float: left; padding:40px"><a href="Copyright - Fill In Later">Copyright</a></li>
+    </ul>
+</footer>
+</body>
+</html>
