@@ -70,10 +70,11 @@
 
             // If the form is valid, show a success alert
             if (isValid) {
-                alert("Registration successful! Welcome, " + username.value + "!"); // Use alert for popup
+                //Alert triggers a popup that the user must close out of
+                alert("Registration successful! Welcome, " + username.value + "!");
             }
 
-            return isValid; // Return the validation result
+            return isValid;
         }
 
         // This selects the error (in this case, the error is blank, and displays it)
