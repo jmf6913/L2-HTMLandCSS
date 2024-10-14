@@ -2,17 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
     <title>User Sign Up - Ferrell And Sons: Wagons And Wheels</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
         body {
-
             background-color: white;
         }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+            position: absolute;
+        }
+        .form-field {
+            position: relative;
+        }
     </style>
+
+    <script>
+        function validateForm() {
+            <!-- The form is, by default, ready to be submitted. If any of the flags are thrown, the if statement changes the boolean factor-->
+            isValid = true;
+
+            <!-- Clears any leftover errors-->
+            clearErrors();
+
+            username = document.getElementById("username");
+            email = document.getElementById("email");
+            password = document.getElementById("password");
+            confirmPassword = document.getElementById("confirm_password");
+            successMessage = document.getElementById("success-message");
+
+            <!-- Our main check, if there is any backspace then it is cut out via the trim settign-->
+            if (username.value.trim() === "") {
+                <!-- showError first has to have an error name, then the message that is displayed-->
+                showError("username-error", "Username is required");
+                isValid = false;
+            }
+
+            if (email.value.trim() === "") {
+                showError("email-error", "Email is required");
+                isValid = false;
+            }
+
+            if (password.value.trim() === "") {
+                showError("password-error", "Password is required");
+                isValid = false;
+            }
+
+            if (confirmPassword.value.trim() === "") {
+                showError("confirm-password-error", "Confirm password is required");
+                isValid = false;
+            }
+
+            <!-- This checks to make sure the passwords are the same, if they are not then the program still doesn't function-->
+            if (password.value.trim() !== confirmPassword.value.trim()) {
+                showError("confirm-password-error", "Passwords must be the same!");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        <!-- This selects the error (in this case, the error is blank, and displays it-->
+        function showError(errorId, message) {
+            errorElement = document.getElementById(errorId);
+            <!-- How the bubble is displayed and the message inside-->
+            errorElement.textContent = message;
+            errorElement.style.display = "block";
+        }
+
+        <!-- This is to clear any errors in case the user fills the field in -->
+        function clearErrors() {
+            <!-- This selects all the error messages, a more powerful for loop-->
+            errorMessages = document.querySelectorAll('.error-message');
+            <!-- developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll -->
+            <!-- This is a for-each loop, where it goes through every loop and sets it equal to nothing, to clear out the error message-->
+            errorMessages.forEach(function (message) {
+                message.style.display = "none";
+            });
+        }
+    </script>
+
 </head>
 <body>
 
@@ -24,34 +97,39 @@
     </h1>
 </header>
 
+<section style="position: absolute; top:30px; left: 350px">
+    <h1>User Sign Up</h1>
+    <!-- Everytime the submit button is clicked, the "validateForm" function is called-->
+    <form onsubmit="return validateForm();">
+        <div class="mb-3 form-field">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+            <!-- The error message is called and displayed in case it is needed-->
+            <div id="username-error" class="error-message"></div>
+        </div>
 
-    <section style="position: absolute; top:30px ;left: 350px">
-        <h1>User Sign Up</h1>
-        <form>
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
-            </div>
+        <div class="mb-3 form-field">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+            <div id="email-error" class="error-message"></div>
+        </div>
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-            </div>
+        <div class="mb-3 form-field">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+            <div id="password-error" class="error-message"></div>
+        </div>
 
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
-            </div>
+        <div class="mb-3 form-field">
+            <label for="confirm_password" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password">
+            <div id="confirm-password-error" class="error-message"></div>
+        </div>
 
-            <div class="mb-3">
-                <label for="confirm_password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password">
-            </div>
-
-            <button type="submit" class="btn btn-primary" onclick>Sign Up</button>
-        </form>
-    </section>
-
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <div id="success-message" class="success-message"></div>
+    </form>
+</section>
 
 <section style="position: absolute; right:200px; top:100px">
     <button type="button" class="btn btn-primary" onclick="window.location.href='WebPageHome.html';">
@@ -60,7 +138,7 @@
 </section>
 
 <nav>
-    <ul style = "list-style-type: none; border: 5px solid black; padding: 10px; display: inline-block;">
+    <ul style="list-style-type: none; border: 5px solid black; padding: 10px; display: inline-block;">
         <!-- a href is what I used in past internships to go to another web page, so I am reusing it here. -->
         <!-- The words in between the quotes are the link, being where it will go after you click it.-->
         <li style="padding:10px"><a href="Home - Fill In Later">Home</a></li>
@@ -72,15 +150,13 @@
     </ul>
 </nav>
 
-
-
-
-<footer style="position: absolute; bottom: 0; width: 100%; background-color: darkgray ;">
-    <ul style = "list-style-type: none">
-        <li style = "float: left; padding:40px"><a href="Terms of Use - Fill In Later">Terms of Use</a></li>
-        <li style = "float: left; padding:40px"><a href="Cookie and Private Policy - Fill In Later">Cookie and Private Policy</a></li>
-        <li style = "float: left; padding:40px"><a href="Copyright - Fill In Later">Copyright</a></li>
+<footer style="position: absolute; bottom: 0; width: 100%; background-color: darkgray;">
+    <ul style="list-style-type: none">
+        <li style="float: left; padding:40px"><a href="Terms of Use - Fill In Later">Terms of Use</a></li>
+        <li style="float: left; padding:40px"><a href="Cookie and Private Policy - Fill In Later">Cookie and Private Policy</a></li>
+        <li style="float: left; padding:40px"><a href="Copyright - Fill In Later">Copyright</a></li>
     </ul>
 </footer>
 </body>
 </html>
+
