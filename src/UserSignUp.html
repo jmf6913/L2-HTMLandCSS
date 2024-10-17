@@ -26,7 +26,7 @@
     <script>
         function validateForm() {
             // The form is, by default, ready to be submitted. If any of the flags are thrown, the if statement changes the boolean factor
-             isValid = true;
+            isValid = true;
 
             // Clears any leftover errors
             clearErrors();
@@ -40,31 +40,31 @@
             // Check if username is empty
             if (username.value.trim() === "") {
                 // showError first has to have an error name, then the message that is displayed
-                showError("username-error", "Username is required");
+                showError("username-error", "Username is required", "username");
                 isValid = false;
             }
 
             // Check if email is empty
             if (email.value.trim() === "") {
-                showError("email-error", "Email is required");
+                showError("email-error", "Email is required", "email");
                 isValid = false;
             }
 
             // Check if password is empty
             if (password.value.trim() === "") {
-                showError("password-error", "Password is required");
+                showError("password-error", "Password is required", "password");
                 isValid = false;
             }
 
             // Check if confirm password is empty
             if (confirmPassword.value.trim() === "") {
-                showError("confirm-password-error", "Confirm password is required");
+                showError("confirm-password-error", "Confirm password is required", "confirm_password");
                 isValid = false;
             }
 
             // This checks to make sure the passwords are the same
             if (password.value.trim() !== confirmPassword.value.trim()) {
-                showError("confirm-password-error", "Passwords must be the same!");
+                showError("confirm-password-error", "Passwords must be the same!", "confirm_password");
                 isValid = false;
             }
 
@@ -78,11 +78,16 @@
         }
 
         // This selects the error (in this case, the error is blank, and displays it)
-        function showError(errorId, message) {
+        function showError(errorId, message, inputId) {
             errorElement = document.getElementById(errorId);
-            // How the bubble is displayed and the message inside
+            inputElement = document.getElementById(inputId);
+
+            // Show the error message
             errorElement.textContent = message;
             errorElement.style.display = "block";
+
+            // Change the border color to red
+            inputElement.style.border = "2px solid red";
         }
 
         // This is to clear any errors in case the user fills the field in
@@ -92,6 +97,12 @@
             // This goes through every loop and sets it equal to nothing, to clear out the error message
             errorMessages.forEach(function (message) {
                 message.style.display = "none";
+            });
+
+            // Clear border color for all input fields
+            inputs = document.querySelectorAll('input');
+            inputs.forEach(function (input) {
+                input.style.border = "";
             });
         }
     </script>
@@ -168,5 +179,6 @@
 </footer>
 </body>
 </html>
+
 
 
